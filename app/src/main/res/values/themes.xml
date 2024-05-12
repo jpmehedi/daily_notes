@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.SplashScreen.MySplash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FFFFB347</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/play_store</item>
+        <item name="postSplashScreenTheme">@style/Theme.SplashScreen</item>
+
+    </style>
+</resources>
