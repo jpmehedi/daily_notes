@@ -25,10 +25,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             HabittrackerTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                    OnBoardingScreen(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding)
                     )
+
                 }
             }
         }
@@ -43,10 +45,4 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    HabittrackerTheme {
-        Greeting("Android")
-    }
-}
+
