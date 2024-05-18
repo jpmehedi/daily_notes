@@ -1,4 +1,5 @@
 package com.example.habit_tracker
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,9 +14,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.shape.ZeroCornerSize
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
@@ -37,14 +42,19 @@ import com.example.habit_tracker.ui.theme.SecondaryColor
 import com.example.habit_tracker.ui.theme.TextColor
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Preview(showBackground = true)
 @Composable
 fun OnBoardingScreen(modifier: Modifier = Modifier) {
-
+    val pageCount = 3;
+    val pagerState = rememberPagerState(
+        pageCount = {pageCount}
+    )
     Column (
         modifier = Modifier
             .fillMaxHeight()
             .padding(15.dp),
+           // .verticalScroll(rememberScrollState()), When need to scroll
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
@@ -59,11 +69,17 @@ fun OnBoardingScreen(modifier: Modifier = Modifier) {
           Text(text = "Daily Notes", style = TextStyle(color = TextColor))
         }
         Spacer(modifier = Modifier.height(32.dp))
-        Image(
-            painter = painterResource(id = R.drawable.onboard_1),
-            contentDescription = "Onboarding"
-        )
-        OnboardingIndicator (totalPages = 3, currentPage = 1)
+
+        HorizontalPager(
+            state = pagerState
+        ) {it:Int->
+            Image(
+                painter = painterResource(id = if (it == 0) R.drawable.onboard1 else if (it == 1) R.drawable.onboard2 else R.drawable.onboard3),
+                contentDescription = "Onboarding"
+            )
+        }
+        Spacer(modifier = Modifier.height(32.dp))
+        OnboardingIndicator (totalPages = pageCount, currentPage = pagerState.currentPage)
         Spacer(modifier = Modifier.height(32.dp))
         CustomButton(
             onClick = {},
@@ -81,6 +97,7 @@ fun OnBoardingScreen(modifier: Modifier = Modifier) {
     }
 }
 
+
 @Composable
 fun OnboardingIndicator(totalPages: Int, currentPage: Int) {
     Row(
@@ -88,11 +105,11 @@ fun OnboardingIndicator(totalPages: Int, currentPage: Int) {
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         for (i in 0 until totalPages) {
-            val color = if (i == currentPage) Color.Black else Color.Gray
-            val shape = if (i == currentPage) CircleShape else RoundedCornerShape(ZeroCornerSize)
+            val color = if (i == currentPage) PrimaryColor else SecondaryColor
+            val shape = if (i == currentPage) CircleShape else RoundedCornerShape(50)
             Box(
                 modifier = Modifier
-                    .size(12.dp)
+                    .size(30.dp,10.dp)
                     .background(color, shape)
             )
         }
