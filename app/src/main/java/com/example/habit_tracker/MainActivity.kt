@@ -1,48 +1,49 @@
 package com.example.habit_tracker
 
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.view.WindowInsets
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.example.habit_tracker.ui.theme.HabittrackerTheme
+import androidx.core.view.WindowCompat
+import com.example.habit_tracker.ui.theme.BackgroundColor
+import com.example.habit_tracker.ui.theme.DailyNotes
+import com.example.habit_tracker.ui.theme.PrimaryColor
+import com.example.habit_tracker.ui.theme.SecondaryColor
 
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen().setKeepOnScreenCondition(
             condition = { false }
         )
-        Thread.sleep(200)
+        Thread.sleep(1000)
         enableEdgeToEdge()
         setContent {
-            HabittrackerTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+            DailyNotes {
+                Surface(modifier = Modifier.fillMaxSize(), color = BackgroundColor) {
                     OnBoardingScreen(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(innerPadding)
                     )
-
                 }
+
             }
         }
     }
 }
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
 
