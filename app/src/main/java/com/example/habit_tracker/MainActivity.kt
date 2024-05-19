@@ -35,12 +35,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             DailyNotes {
-                Surface(modifier = Modifier.fillMaxSize(), color = BackgroundColor) {
-                    OnBoardingScreen(
-                        modifier = Modifier
-                            .fillMaxSize()
-                    )
-                }
+//                Surface(modifier = Modifier.fillMaxSize(), color = BackgroundColor) {
+//                    OnBoardingScreen(
+//                        modifier = Modifier
+//                            .fillMaxSize()
+//                    )
+//                }
+                SignUpScreen()
 
             }
         }

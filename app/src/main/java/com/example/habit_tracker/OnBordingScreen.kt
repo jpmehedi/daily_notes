@@ -45,7 +45,7 @@ import com.example.habit_tracker.ui.theme.TextColor
 @OptIn(ExperimentalFoundationApi::class)
 @Preview(showBackground = true)
 @Composable
-fun OnBoardingScreen(modifier: Modifier = Modifier) {
+fun OnBoardingScreen() {
     val pageCount = 3;
     val pagerState = rememberPagerState(
         pageCount = {pageCount}
