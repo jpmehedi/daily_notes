@@ -41,7 +41,8 @@ class MainActivity : ComponentActivity() {
 //                            .fillMaxSize()
 //                    )
 //                }
-                SignUpScreen()
+                //SignUpScreen()
+                BaseNavScreen()
 
             }
         }

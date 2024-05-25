@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
     implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation ("androidx.navigation:navigation-compose:2.7.6")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -68,5 +69,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+
 
 }
