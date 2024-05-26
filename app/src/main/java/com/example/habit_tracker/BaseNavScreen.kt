@@ -20,8 +20,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.Button
@@ -76,7 +78,7 @@ fun BaseNavScreen(){
     val selectedItem = remember { mutableIntStateOf(0) }
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val sheetState = rememberModalBottomSheetState()
-    var showBottomSheet by remember { mutableStateOf(true) }
+    var showBottomSheet by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     Surface {
         ModalNavigationDrawer(
@@ -142,7 +144,15 @@ fun BaseNavScreen(){
                                 onClick = { },
                                 shape = RoundedCornerShape(0.dp)
                             ) {
-                                Text("TXT")
+                                Column(
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.Center
+                                ) {
+                                    Icon(imageVector = Icons.Default.List, contentDescription = "")
+                                    Spacer(modifier = Modifier.height(10.dp))
+                                    Text("TXT")
+                                }
+
                             }
                            Spacer(modifier = Modifier.width(20.dp))
                             FilledTonalButton(
@@ -150,7 +160,14 @@ fun BaseNavScreen(){
                                 onClick = { },
                                 shape = RoundedCornerShape(0.dp)
                             ) {
-                                Text("CheckList")
+                                Column (
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.Center
+                                ){
+                                    Icon(imageVector = Icons.Default.Check, contentDescription = "")
+                                    Spacer(modifier = Modifier.height(10.dp))
+                                    Text("CheckList")
+                                }
                             }
                         }
 
