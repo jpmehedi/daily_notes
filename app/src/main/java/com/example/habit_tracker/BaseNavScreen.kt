@@ -75,7 +75,7 @@ import kotlinx.coroutines.launch
 @Preview(showBackground = true)
 @Composable
 fun BaseNavScreen(){
-    val selectedItem = remember { mutableIntStateOf(0) }
+    val selectedItem = remember { mutableIntStateOf(3) }
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val sheetState = rememberModalBottomSheetState()
     var showBottomSheet by remember { mutableStateOf(false) }
