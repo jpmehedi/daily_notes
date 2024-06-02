@@ -77,7 +77,7 @@ import kotlinx.coroutines.launch
 @Preview(showBackground = true)
 @Composable
 fun BaseNavScreen(){
-    val selectedItem = remember { mutableIntStateOf(0) }
+    val selectedItem = remember { mutableIntStateOf(2) }
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val sheetState = rememberModalBottomSheetState()
     var showBottomSheet by remember { mutableStateOf(false) }
@@ -300,9 +300,9 @@ fun OCRTopAppBar(){
 @Composable
 fun HelpTopAppBar(){
     TopAppBar(
-        title = { Text("Help") },
+        title = { Text("Help", style = TextStyle(color = BackgroundColor, fontSize = 24.sp) )},
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = BackgroundColor
+            containerColor = PrimaryColor
         ),
     )
 }
