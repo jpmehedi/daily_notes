@@ -77,7 +77,7 @@ import kotlinx.coroutines.launch
 @Preview(showBackground = true)
 @Composable
 fun BaseNavScreen(){
-    val selectedItem = remember { mutableIntStateOf(2) }
+    val selectedItem = remember { mutableIntStateOf(1) }
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val sheetState = rememberModalBottomSheetState()
     var showBottomSheet by remember { mutableStateOf(false) }
@@ -175,19 +175,23 @@ fun BaseNavScreen(){
 
             },
             floatingActionButton = {
-                FloatingActionButton(
-                    onClick = {
-                        showBottomSheet = true
-                    },
-                    containerColor = PrimaryColor,
-                    shape = CircleShape,
-                    contentColor = SecondaryColor
-                ) {
-                    Icon(
-                        modifier = Modifier,
-                        imageVector = Icons.Default.Add,
-                        contentDescription = " "
-                    )
+                if(selectedItem.value == 0){
+                    FloatingActionButton(
+                        onClick = {
+                            showBottomSheet = true
+                        },
+                        containerColor = PrimaryColor,
+                        shape = CircleShape,
+                        contentColor = SecondaryColor
+                    ) {
+                        Icon(
+                            modifier = Modifier,
+                            imageVector = Icons.Default.Add,
+                            contentDescription = " "
+                        )
+                    }
+                }else{
+                   null
                 }
             },
             bottomBar = {
