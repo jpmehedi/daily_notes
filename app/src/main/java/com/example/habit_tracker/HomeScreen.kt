@@ -1,5 +1,6 @@
 package com.example.habit_tracker
 
+import androidx.compose.foundation.Image
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,7 +42,7 @@ fun HomeScreen(){
                 .background(BackgroundColor)
                 .wrapContentSize(Alignment.Center)
         ) {
-
+            Image(painter = painterResource(id = R.drawable.create_note), contentDescription ="" )
         }
     }
 }
