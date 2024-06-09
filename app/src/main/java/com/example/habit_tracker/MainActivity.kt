@@ -43,7 +43,8 @@ class MainActivity : ComponentActivity() {
 //                }
                 //SignUpScreen()
 //                BaseNavScreen()
-                AddNoteScreen()
+//                AddNoteScreen()
+                AddTodoScreen()
             }
         }
     }
