@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.navigation.compose.rememberNavController
 import com.example.habit_tracker.ui.theme.BackgroundColor
 import com.example.habit_tracker.ui.theme.DailyNotes
 import com.example.habit_tracker.ui.theme.PrimaryColor
@@ -35,16 +37,15 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             DailyNotes {
-//                Surface(modifier = Modifier.fillMaxSize(), color = BackgroundColor) {
-//                    OnBoardingScreen(
-//                        modifier = Modifier
-//                            .fillMaxSize()
-//                    )
-//                }
-                //SignUpScreen()
-//                BaseNavScreen()
-//                AddNoteScreen()
-                AddTodoScreen()
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    AppNavHost(
+                        navController = rememberNavController()
+
+                    )
+                }
             }
         }
     }

@@ -47,6 +47,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.habit_tracker.ui.theme.BackgroundColor
 import com.example.habit_tracker.ui.theme.PrimaryColor
 import com.example.habit_tracker.ui.theme.SecondaryColor
@@ -55,7 +56,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
 @Composable
-fun AddTodoScreen() {
+fun AddTodoScreen(navHostController: NavHostController) {
     val systemUiController = rememberSystemUiController()
     val useDarkIcons = !isSystemInDarkTheme()
     val statusBarColor = SecondaryColor
@@ -76,7 +77,7 @@ fun AddTodoScreen() {
     }
     Scaffold(
         modifier = Modifier.background(SecondaryColor),
-        topBar = { TodoScreenAppbar() },
+        topBar = { TodoScreenAppbar(navHostController) },
         content = { innerPadding ->
             TodoScreenBody(innerPadding)
         },
@@ -87,7 +88,7 @@ fun AddTodoScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TodoScreenAppbar(){
+fun TodoScreenAppbar(navHostController: NavHostController){
     var expanded by remember { mutableStateOf(false) }
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
@@ -99,7 +100,9 @@ fun TodoScreenAppbar(){
         title = { Text("Add Todo") },
         navigationIcon = {
             IconButton(
-                onClick = { /* Handle back button click */ }
+                onClick = {
+                    navHostController.popBackStack()
+                }
             )
             {
                 Icon(Icons.Default.ArrowBack,  contentDescription = "Back", tint = PrimaryColor)
