@@ -48,6 +48,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.habit_tracker.ui.theme.BackgroundColor
 import com.example.habit_tracker.ui.theme.InputFieldColor
 import com.example.habit_tracker.ui.theme.PrimaryColor
@@ -56,7 +57,7 @@ import com.example.habit_tracker.ui.theme.TextColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun  SignUpScreen() {
+fun  SignUpScreen(navController: NavHostController) {
     var isPasswordVisible = remember { mutableStateOf(false) }
     Box (
         modifier = Modifier
@@ -72,7 +73,9 @@ fun  SignUpScreen() {
                     ),
                     navigationIcon = {
                         IconButton(
-                            onClick = { /*TODO*/ },
+                            onClick = {
+                                navController.popBackStack()
+                            },
                             content = {
                                 Icon(
                                     imageVector = Icons.Filled.ArrowBack,
@@ -153,18 +156,20 @@ fun  SignUpScreen() {
                        }
                        CustomClickableText()
                        CustomButton(
-                           buttonName = "Create Account",
+                           onClick = {
+                               navController.navigate(NavigationItem.BaseNav.route)
+                           },
+                           buttonName = "CREATE ACCOUNT",
                            color = PrimaryColor,
                            textColor = SecondaryColor
-                       ) {
-
-                       }
+                       )
                    }
                 }
             },
         )
     }
 }
+
 
 @Composable
 fun CustomClickableText() {

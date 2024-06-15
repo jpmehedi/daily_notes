@@ -36,6 +36,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.habit_tracker.ui.theme.BackgroundColor
 import com.example.habit_tracker.ui.theme.PrimaryColor
 import com.example.habit_tracker.ui.theme.SecondaryColor
@@ -44,7 +45,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
 @Composable
-fun AddNoteScreen() {
+fun AddNoteScreen(navHostController: NavHostController) {
     val systemUiController = rememberSystemUiController()
     val useDarkIcons = !isSystemInDarkTheme()
     val statusBarColor = SecondaryColor
@@ -65,7 +66,9 @@ fun AddNoteScreen() {
     }
     Scaffold(
         modifier = Modifier.background(SecondaryColor),
-        topBar = { NoteScreenAppbar() },
+        topBar = { NoteScreenAppbar(
+            navHostController
+        ) },
         content = { innerPadding ->
             NoteScreenBody(innerPadding)
         },
@@ -76,7 +79,7 @@ fun AddNoteScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NoteScreenAppbar(){
+fun NoteScreenAppbar(navHostController: NavHostController){
     var expanded by remember { mutableStateOf(false) }
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
@@ -88,7 +91,9 @@ fun NoteScreenAppbar(){
         title = { Text("Add Note") },
         navigationIcon = {
             IconButton(
-                onClick = { /* Handle back button click */ }
+                onClick = {
+                    navHostController.popBackStack();
+                }
             )
             {
                 Icon(Icons.Default.ArrowBack,  contentDescription = "Back", tint = PrimaryColor)

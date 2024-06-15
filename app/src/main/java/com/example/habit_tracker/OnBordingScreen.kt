@@ -1,4 +1,6 @@
 package com.example.habit_tracker
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,12 +32,15 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.habit_tracker.ui.theme.BackgroundColor
 import com.example.habit_tracker.ui.theme.PrimaryColor
 import com.example.habit_tracker.ui.theme.SecondaryColor
@@ -43,10 +48,9 @@ import com.example.habit_tracker.ui.theme.TextColor
 
 
 @OptIn(ExperimentalFoundationApi::class)
-@Preview(showBackground = true)
 @Composable
-fun OnBoardingScreen() {
-    val pageCount = 3;
+fun OnBoardingScreen(navHostController: NavHostController) {
+    val pageCount = 3
     val pagerState = rememberPagerState(
         pageCount = {pageCount}
     )
@@ -70,6 +74,8 @@ fun OnBoardingScreen() {
         }
         Spacer(modifier = Modifier.height(32.dp))
 
+        val context = LocalContext.current
+
         HorizontalPager(
             state = pagerState
         ) {it:Int->
@@ -82,7 +88,10 @@ fun OnBoardingScreen() {
         OnboardingIndicator (totalPages = pageCount, currentPage = pagerState.currentPage)
         Spacer(modifier = Modifier.height(32.dp))
         CustomButton(
-            onClick = {},
+            onClick = {
+                navHostController.navigate(NavigationItem.Signup.route)
+
+            },
             buttonName = "CREATE ACCOUNT",
             color = PrimaryColor,
             textColor = SecondaryColor

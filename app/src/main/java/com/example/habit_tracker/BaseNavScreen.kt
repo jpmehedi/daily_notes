@@ -67,6 +67,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.habit_tracker.ui.theme.BackgroundColor
 import com.example.habit_tracker.ui.theme.PrimaryColor
 import com.example.habit_tracker.ui.theme.SecondaryColor
@@ -76,8 +77,8 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
-fun BaseNavScreen(){
-    val selectedItem = remember { mutableIntStateOf(1) }
+fun BaseNavScreen(navHostController: NavHostController){
+    val selectedItem = remember { mutableIntStateOf(0) }
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val sheetState = rememberModalBottomSheetState()
     var showBottomSheet by remember { mutableStateOf(false) }
@@ -141,7 +142,9 @@ fun BaseNavScreen(){
                         ){
                             FilledTonalButton(
                                 modifier = Modifier.size(height = 80.dp, width = 120.dp), // Setting the size to 100x100 dp
-                                onClick = { },
+                                onClick = {
+                                    navHostController.navigate(NavigationItem.AddNote.route)
+                                },
                                 shape = RoundedCornerShape(0.dp)
                             ) {
                                 Column(
@@ -157,7 +160,9 @@ fun BaseNavScreen(){
                            Spacer(modifier = Modifier.width(20.dp))
                             FilledTonalButton(
                                 modifier = Modifier.size(height = 80.dp, width = 120.dp), // Setting the size to 100x100 dp
-                                onClick = { },
+                                onClick = {
+                                    navHostController.navigate(NavigationItem.AddTodolist.route)
+                                },
                                 shape = RoundedCornerShape(0.dp)
                             ) {
                                 Column (
